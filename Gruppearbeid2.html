@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team 3-Force</title>
+
+    <style>
+        body {
+            padding: 25px;
+            background-color: white;
+            color: black;
+            font-size: 25px;
+        }
+
+        .dark-mode {
+            background-color: #11191f; 
+            color: #e6edf3;
+        }
+
+        button {
+            background-color: #ccc;
+            border-radius: 5px;
+            width: 200px;
+            font-size: 20px;
+        }
+
+        select {
+            background-color: #ccc;
+            border-radius: 5px;
+            width: 200px;
+            font-size: 20px;
+        }
+
+        .title {
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            background-color: lightblue;
+        }
+
+        .JB{
+            color: blue; 
+            background-color: pink;
+            text-align: right;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .ove {
+            color:white;
+            background-color: black;
+            padding: 20px;
+            margin: 20px;
+            font-size: 30px;
+            border: 2px solid yellow;
+            border-radius: 12px;
+        }
+
+        .ove::marker {
+            color: black;
+        }
+
+
+        .ema{
+            color: green;
+            background-color: yellow;
+            padding: 2px;
+            margin:2px;
+        }
+        
+        .sverre{
+            color: hotpink;
+            background-color: black;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <button onclick="toggleDarkMode()"> ☀︎ / ☾ </button>
+
+    <h1 class="title">Team 3-Force</h1>
+    <h2 class="title">Emanuele, Jamal, Ove, & Sverre! </h2>
+    <div>GET Academy 2026</div>
+
+        <!-- Lag en enkel HTML-side:
+        <h1> med team-navn
+        <h2> Med navn
+        <p> der hver av dere skriver én setning (hvor dere bor + noe dere liker)
+        <style> legg til litt enkel stil (f.eks. farge på teksten)
+        lagre som index.html 
+
+
+        Bygg videre på siden dere lagde i går:
+
+        • legg til en knapp
+        • når dere klikker på den → bytt farge på siden
+        • bruk CSS hvis dere vil
+        - lag en team repo på github
+        • push til repo når dere er klare
+
+        • bruk en variabel i JavaScript som husker hvilken farge siden har
+        • når dere klikker → bytt mellom to farger
+
+
+        Dette er kun for å bli trygge på HTML + CSS + JavaScript sammen 💚
+        Det er helt greit om dere bare får det litt til. Ping meg hvis dere sitter fast-->
+
+        <button id="color" type="button" onclick="changeColor()">Bytt farge</button>
+
+        <select id="select" onchange="changeColorSelect()">
+            <option value="Velg farge">Velg farge</option>
+            <option value="black">Svart</option>
+            <option value="red">Rød</option>
+            <option value="yellow">Gul</option>
+            <option value="#11191f">Blå</option>
+            <option value="">Ingen</option>
+        </select>
+
+    <ul>
+        <li class="ema"><i>Emanuele</i>: bor i Tromsø men kommer fra Italia. Liker bordspill, videospill, distro-hopping og reise.</li>
+        <li class="ove">Ove: Liker å kode, se film, lage ting, snekker, litt gaming og spille gitar.</li>
+        <li class="JB">Jamal: liker å spille fotball, bor i Oslo</li>
+        <li class="sverre">Sverre: bor i Båstad, liker å game og se på serier.</li>
+    </ul>
+
+    <script>
+       function changeColorSelect() {
+            const select = document.getElementById("select");
+            const color = select.value;
+            document.body.style.backgroundColor = color;
+
+             if (color === "" || color === "Velg farge") {
+                document.body.style.backgroundColor = "";
+            } else {
+                document.body.style.backgroundColor = color;
+    }
+        }
+
+        function changeColor() {
+            document.body.style.backgroundColor = 'red';
+        }
+
+        function toggleDarkMode() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+
+    </script>
+
+</body>
+</html>
