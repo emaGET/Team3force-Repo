@@ -144,15 +144,14 @@
 
     <script>
        function changeColorSelect() {
-            const select = document.getElementById("select");
-            const color = select.value;
+            const color = document.getElementById("select").value;           
             document.body.style.backgroundColor = color;
 
              if (color === "" || color === "Velg farge") {
                 document.body.style.backgroundColor = "";
             } else {
                 document.body.style.backgroundColor = color;
-    }
+            }
         }
 
         function changeColor() {
