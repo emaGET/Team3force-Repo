@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,7 @@
         }
 
         .dark-mode {
-            background-color: #11191f; 
+            background-color: #11191f;
             color: #e6edf3;
         }
 
@@ -39,15 +40,15 @@
             background-color: lightblue;
         }
 
-        .JB{
-            color: blue; 
+        .JB {
+            color: blue;
             background-color: pink;
             text-align: right;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         .ove {
-            color:white;
+            color: white;
             background-color: black;
             padding: 20px;
             margin: 20px;
@@ -61,23 +62,22 @@
         }
 
 
-        .ema{
+        .ema {
             color: green;
             background-color: yellow;
             padding: 2px;
-            margin:2px;
+            margin: 2px;
         }
-        
-        .sverre{
+
+        .sverre {
             color: hotpink;
             background-color: black;
             text-align: center;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
-
-
     </style>
 </head>
+
 <body>
 
     <button onclick="toggleDarkMode()"> ☀︎ / ☾ </button>
@@ -95,7 +95,7 @@
 
     <hr>
 
-        <!-- Lag en enkel HTML-side:
+    <!-- Lag en enkel HTML-side:
         <h1> med team-navn
         <h2> Med navn
         <p> der hver av dere skriver én setning (hvor dere bor + noe dere liker)
@@ -124,30 +124,57 @@
         - Legg til en <input>
         - Man skal skulle skrive en tekst i input og legge det til en liste med ting man liker til valgte team medlem-->
 
-        <button id="color" type="button" onclick="changeColor()">Bytt farge</button>
+    <button id="color" type="button" onclick="changeColor()">Bytt farge</button>
 
-        <select id="select" onchange="changeColorSelect()">
-            <option value="Velg farge">Velg farge</option>
-            <option value="black">Svart</option>
-            <option value="red">Rød</option>
-            <option value="yellow">Gul</option>
-            <option value="#11191f">Blå</option>
-            <option value="">Ingen</option>
-        </select>
+    <select id="select" onchange="changeColorSelect()">
+        <option value="Velg farge">Velg farge</option>
+        <option value="black">Svart</option>
+        <option value="red">Rød</option>
+        <option value="yellow">Gul</option>
+        <option value="#11191f">Blå</option>
+        <option value="">Ingen</option>
+    </select>
+
+    <input type="text" id="tekstInput" placeholder="Skriv noe">
+    <button onclick="AddToList(
+    document.getElementById('tekstInput').value)">Legg til</button>
+
+    <select id="selectId">
+        <option value="ove">Ove</option>
+        <option value="jamal">Jamal</option>
+        <option value="sverre">Sverre</option>
+    </select>
+
+
+
+    <ul id="liste">
+        <h3>Ove</h3>
+        <li>Liker å kode</li>
+        <li>Se film</li>
+        <li>Lage ting</li>
+        <li>Snekre</li>
+        <div id="ove"></div>
+
+        <h3>Sverre</h3>
+        <li>Bor i Båstad</li>
+        <div id="sverre"></div>
+
+    </ul>
 
     <ul>
-        <li class="ema"><i>Emanuele</i>: bor i Tromsø men kommer fra Italia. Liker bordspill, videospill, distro-hopping og reise.</li>
+        <li class="ema"><i>Emanuele</i>: bor i Tromsø men kommer fra Italia. Liker bordspill, videospill, distro-hopping
+            og reise.</li>
         <li class="ove">Ove: Liker å kode, se film, lage ting, snekker, litt gaming og spille gitar.</li>
         <li class="JB">Jamal: liker å spille fotball, bor i Oslo</li>
         <li class="sverre">Sverre: bor i Båstad, liker å game og se på serier.</li>
     </ul>
 
     <script>
-       function changeColorSelect() {
-            const color = document.getElementById("select").value;           
+        function changeColorSelect() {
+            const color = document.getElementById("select").value;
             document.body.style.backgroundColor = color;
 
-             if (color === "" || color === "Velg farge") {
+            if (color === "" || color === "Velg farge") {
                 document.body.style.backgroundColor = "";
             } else {
                 document.body.style.backgroundColor = color;
@@ -163,7 +190,18 @@
             element.classList.toggle("dark-mode");
         }
 
+         function AddToList(tekst) {          
+
+            const valgtListe = document.getElementById("selectId").value;
+
+            document.getElementById(valgtListe).innerHTML += `
+            <li>${tekst}</li>`;        
+
+            document.getElementById("tekstInput").value = ""; // tøm input
+        }
+
     </script>
 
 </body>
+
 </html>
