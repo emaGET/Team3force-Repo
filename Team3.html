@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Team 3-Force</title>
-
+    <title>Team 3</title>
     <style>
 
         button {
@@ -23,13 +21,6 @@
             font-size: 20px;
         }
 
-        .title {
-            padding: 12px;
-            margin-bottom: 12px;
-            border-radius: 12px;
-            background-color: lightblue;
-        }
-
         .JB{
             color: blue; 
             background-color: pink;
@@ -38,17 +29,37 @@
         }
 
         .ove {
-            color:white;
+            color:red;
             background-color: black;
             padding: 20px;
             margin: 20px;
             font-size: 30px;
             border: 2px solid yellow;
-            border-radius: 12px;
+            border-radius: 13px;
+        }
+
+        .ove-light {
+            color: black;;
+            background-color: blue;
+        }
+
+        .ove-yellow {
+            color: blue;
+            background-color: #000;
+        }
+
+        .ove-red {
+            color: yellow;
+            background-color: #000;
         }
 
         .ove::marker {
             color: black;
+        }
+
+        .dark-mode {
+            background-color: #000;
+            color: #fff;
         }
 
 
@@ -66,20 +77,19 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
 
-
+        .dark-mode {
+            background-color: black;
+            color: white;
     </style>
 </head>
 <body>
-    <h1 class="title">Team 3-Force</h1>
-    <h2 class="title">Emanuele, Jamal, Ove, & Sverre! </h2>
+    <h1>Team 3</h1>
+    <h2>Emanuele, Jamal, Ove, & Sverre! </h2>
+    <p>Du valgte: <span id="valgt-farge"></span></p>
     <div>GET Academy 2026</div>
 
         <!-- Lag en enkel HTML-side:
-        <h1> med team-navn
-        <h2> Med navn
-        <p> der hver av dere skriver én setning (hvor dere bor + noe dere liker)
-        <style> legg til litt enkel stil (f.eks. farge på teksten)
-        lagre som index.html 
+       
 
 
         Bygg videre på siden dere lagde i går:
@@ -104,7 +114,6 @@
             <option value="black">Svart</option>
             <option value="red">Rød</option>
             <option value="yellow">Gul</option>
-            <option value="#11191f">Blå</option>
             <option value="">Ingen</option>
         </select>
 
@@ -115,22 +124,89 @@
         <li class="sverre">Sverre: bor i Båstad, liker å game og se på serier.</li>
     </ul>
 
+     <button onclick="myFunction()">Toggle dark mode</button>
+
     <script>
+        
+        const color ='red';
+
+       
+
+        function myFunction() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+            }
+
+
        function changeColorSelect() {
-            const select = document.getElementById("select");
-            const color = select.value;
+            
+            const color = document.getElementById("select").value;
+            document.getElementById("valgt-farge").textContent = color;
+            console.log(color);
+            changeColorOve(color);
+            
             document.body.style.backgroundColor = color;
 
-             if (color === "" || color === "Velg farge") {
+             if ( color === "Velg farge") {
                 document.body.style.backgroundColor = "";
+                 document.body.style.color = 'black';
+                
             } else {
                 document.body.style.backgroundColor = color;
-    }
+                colorchangeTotext(color)
+               
+            }
         }
 
         function changeColor() {
+            document.getElementById('.dark-mode').remove;
             document.body.style.backgroundColor = 'red';
         }
+
+
+        function colorchangeTotext(color) {
+            if(color === 'black') {
+                color =  document.body.style.color = 'white';
+                
+               
+                
+                
+            } else if(color === ''){
+                color =  document.body.style.color = 'black';
+                
+            }
+           
+        }
+
+        function changeColorOve(color) {
+          
+            document.querySelectorAll('.ove').forEach(el => {
+                 el.classList.remove('ove-light', 'ove-red', 'ove-yellow');
+                switch(color) {
+                    case 'black':
+                        el.classList.add('ove-light');
+                        break;
+
+                    case 'red':
+                        el.classList.add('ove-red');
+                        break;
+
+                    case 'yellow':
+                        el.classList.add('ove-yellow');
+                        break
+
+                    default: 
+                    el.classList.remove('ove-light');
+
+                }                  
+            
+            }); 
+            
+
+        }
+
+
+       
 
 
 
