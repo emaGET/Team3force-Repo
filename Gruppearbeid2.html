@@ -80,6 +80,8 @@
 
 <body>
 
+    <div id="app"></div>
+
     <button onclick="toggleDarkMode()"> ☀︎ / ☾ </button>
 
     <h1 class="title">Team 3-Force</h1>
@@ -95,6 +97,35 @@
 
     <hr>
 
+    <!-- Lag en enkel HTML-side:
+        <h1> med team-navn
+        <h2> Med navn
+        <p> der hver av dere skriver én setning (hvor dere bor + noe dere liker)
+        <style> legg til litt enkel stil (f.eks. farge på teksten)
+        lagre som index.html 
+
+
+        Bygg videre på siden dere lagde i går:
+
+        • legg til en knapp
+        • når dere klikker på den → bytt farge på siden
+        • bruk CSS hvis dere vil
+        - lag en team repo på github
+        • push til repo når dere er klare
+
+        • bruk en variabel i JavaScript som husker hvilken farge siden har
+        • når dere klikker → bytt mellom to farger
+
+
+        Dette er kun for å bli trygge på HTML + CSS + JavaScript sammen 💚
+        Det er helt greit om dere bare får det litt til. Ping meg hvis dere sitter fast
+
+        
+        Bygg videre på team siden deres:
+        - Legg til en <select> med <option> for hvert team medlem
+        - Legg til en <input>
+        - Man skal skulle skrive en tekst i input og legge det til en liste med ting man liker til valgte team medlem-->
+
     <button id="color" type="button" onclick="changeColor()">Bytt farge</button>
 
     <select id="select" onchange="changeColorSelect()">
@@ -106,6 +137,14 @@
         <option value="">Ingen</option>
     </select>
 
+    <br> <hr>
+
+    <div class="random-box">
+        <h3>La oss legge til noe fint til:</h3>
+        <p id="randomResult" style="font-size: 40px; font-weight: bold;"></p>
+        <button onclick="findRandomMember()">Velg tilfeldig!</button>
+    </div>
+
     <input type="text" id="tekstInput" placeholder="Skriv noe">
     <button onclick="AddToList(
     document.getElementById('tekstInput').value)">Legg til</button>
@@ -114,6 +153,8 @@
         <option value="ove">Ove</option>
         <option value="jamal">Jamal</option>
         <option value="sverre">Sverre</option>
+        <option value="emanuele">Emanuele</option>
+
     </select>
 
 
@@ -133,8 +174,7 @@
     </ul>
 
     <ul>
-        <li class="ema"><i>Emanuele</i>: bor i Tromsø men kommer fra Italia. Liker bordspill, videospill, distro-hopping
-            og reise.</li>
+        <li class="ema"><i>Emanuele</i>: bor i Tromsø men kommer fra Italia. Liker bordspill, videospill, distro-hopping og reise.</li>
         <li class="ove">Ove: Liker å kode, se film, lage ting, snekker, litt gaming og spille gitar.</li>
         <li class="JB">Jamal: liker å spille fotball, bor i Oslo</li>
         <li class="sverre">Sverre: bor i Båstad, liker å game og se på serier.</li>
@@ -161,7 +201,7 @@
             element.classList.toggle("dark-mode");
         }
 
-         function AddToList(tekst) {          
+        function AddToList(tekst) {          
 
             const valgtListe = document.getElementById("selectId").value;
 
@@ -169,6 +209,26 @@
             <li>${tekst}</li>`;        
 
             document.getElementById("tekstInput").value = ""; // tøm input
+        }
+
+        function findRandomMember(){
+            let randomNumber = Math.floor(Math.random() * 4);
+
+            if (randomNumber === 0) {
+                valgtMedlem = "Emanuele";
+            } else if (randomNumber === 1) {
+                valgtMedlem = "Jamal";
+            } else if (randomNumber === 2) {
+                valgtMedlem = "Ove";
+            } else if (randomNumber === 3) {
+                valgtMedlem = "Sverre";
+            }
+
+            updateView();
+        }
+
+        function updateView() {
+            document.getElementById('randomResult').innerText = valgtMedlem;
         }
 
     </script>
