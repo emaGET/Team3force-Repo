@@ -97,34 +97,7 @@
 
     <hr>
 
-    <!-- Lag en enkel HTML-side:
-        <h1> med team-navn
-        <h2> Med navn
-        <p> der hver av dere skriver én setning (hvor dere bor + noe dere liker)
-        <style> legg til litt enkel stil (f.eks. farge på teksten)
-        lagre som index.html 
-
-
-        Bygg videre på siden dere lagde i går:
-
-        • legg til en knapp
-        • når dere klikker på den → bytt farge på siden
-        • bruk CSS hvis dere vil
-        - lag en team repo på github
-        • push til repo når dere er klare
-
-        • bruk en variabel i JavaScript som husker hvilken farge siden har
-        • når dere klikker → bytt mellom to farger
-
-
-        Dette er kun for å bli trygge på HTML + CSS + JavaScript sammen 💚
-        Det er helt greit om dere bare får det litt til. Ping meg hvis dere sitter fast
-
-        
-        Bygg videre på team siden deres:
-        - Legg til en <select> med <option> for hvert team medlem
-        - Legg til en <input>
-        - Man skal skulle skrive en tekst i input og legge det til en liste med ting man liker til valgte team medlem-->
+ 
 
     <button id="color" type="button" onclick="changeColor()">Bytt farge</button>
 
@@ -157,21 +130,10 @@
 
     </select>
 
+      <div class="main-cards" id="make-card"></div>
 
 
-    <ul id="liste">
-        <h3>Ove</h3>
-        <li>Liker å kode</li>
-        <li>Se film</li>
-        <li>Lage ting</li>
-        <li>Snekre</li>
-        <div id="ove"></div>
 
-        <h3>Sverre</h3>
-        <li>Bor i Båstad</li>
-        <div id="sverre"></div>
-
-    </ul>
 
     <ul>
         <li class="ema"><i>Emanuele</i>: bor i Tromsø men kommer fra Italia. Liker bordspill, videospill, distro-hopping og reise.</li>
@@ -181,6 +143,25 @@
     </ul>
 
     <script>
+
+        makeCard('Ove', 'ove', ['Se film', 'Snekre', 'Gaming', 'Spille gitar']);
+        makeCard('Sverre', 'sverre', ['Liker å game', 'Se på serier']);
+        makeCard('Jamal', 'JB', ['liker å spille fotball', 'Bor i oslo']);
+        makeCard('Emanuele', 'ema', ['Liker å game', 'bor i Tromsø men kommer fra Italia','Liker bordspill', 'videospill', 'distro-hopping', 'reise']);
+
+
+        function makeCard(name, nameId, listItems) {
+            document.getElementById('make-card').innerHTML += /*HTML*/ `
+            <div class="card">
+                <ul>
+                    <h3>${name}</h3>
+                        ${listItems.map(item => `<li>${item}</li>`).join("")}
+                    <div id="${nameId}"></div>
+                </ul>
+            </div>
+            `;
+        }
+
         function changeColorSelect() {
             const color = document.getElementById("select").value;
             document.body.style.backgroundColor = color;
