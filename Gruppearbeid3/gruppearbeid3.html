@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Vår Team Oppgave 3 for i dag, 26.01.26">
     <meta name="keywords" content="TeamOppgave3">
     <meta name="author" content="Team TriForce">
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="/Gruppearbeid3/css/styles.css">
+    <script src="/Gruppearbeid3/js/script.js"></script>
 
 
     <title>Team3Force Oppgave3</title>
 </head>
+
 <body>
     <div>
 
-        <button onclick="ingenLayout()">Ingen Layout
+        <button onclick="noLayout()">Ingen Layout
         </button>
 
-        <button onclick="vertikalLayout()">Vertikal Layout
+        <button onclick="verticalLayout()">Vertikal Layout
         </button>
 
-        <button onclick="horisontalLayout()">Horisontal Layout
+        <button onclick="horizontalLayout()">Horisontal Layout
         </button>
 
         <button onclick="gridLayout()">Grid Layout
@@ -29,7 +31,41 @@
 
     </div>
 
+      <div id="cards">
+        <div class="card">
+            <div class="header green" onclick="showTools()">
+                Verktøy
+            </div>
+            <div id="cardTools"></div>
+        </div>
+        <div class="card">
+            <div class="header blue" onclick="showHtml()">
+                HTML
+            </div>
+            <div id="cardHtml"></div>
+        </div>
+        <div class="card">
+            <div class="header red" onclick="showCss()">
+                CSS
+            </div>
+            <div id="cardCss"></div>
+        </div>
+        <div class="card">
+            <div class="header yellow" onclick="showJavaScript()">
+                JavaScript
+            </div>
+            <div id="cardJavaScript"></div>
+        </div>
+        <div class="card">
+            <div class="header dark" onclick="showBodyGame()">
+                Hode, kropp og ben
+            </div>
+            <div id="cardGame" class="bodies"> </div>
+        </div>
+    </div>
+
     <h1>Team TriForce!</h1>
 
 </body>
+
 </html>
