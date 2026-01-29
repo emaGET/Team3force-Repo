@@ -119,8 +119,8 @@
 
     <button id="color" type="button" onclick="changeColor()">Bytt farge</button>
 
-    <select id="select" onchange="changeColorSelect()">
-        <option value="Velg farge">Velg farge</option>
+    <select id="select">
+        <option value="">Velg farge</option>
         <option value="black">Svart</option>
         <option value="red">Rød</option>
         <option value="yellow">Gul</option>
@@ -199,20 +199,14 @@
             document.getElementById('memberName').value = '';
         });
 
-
-        function changeColorSelect() {
-            const color = document.getElementById("select").value;
-            document.body.style.backgroundColor = color;
-
-            if (color === "" || color === "Velg farge") {
-                document.body.style.backgroundColor = "";
-            } else {
-                document.body.style.backgroundColor = color;
-            }
-        }
-
         function changeColor() {
-            document.body.style.backgroundColor = 'red';
+            const color = document.getElementById('select').value;
+
+            if (color === "" || color === "Velg Farge") {
+            document.body.style.backgroundColor = "white";
+            } else {
+            document.body.style.backgroundColor = color;
+            }
         }
 
         function toggleDarkMode() {
