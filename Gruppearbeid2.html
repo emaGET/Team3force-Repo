@@ -100,7 +100,7 @@
 
     <div id="app"></div>
 
-    <button onclick="toggleDarkMode()"> ☀︎ / ☾ </button>
+    <button onclick="toggleDarkMode(this)"> ☀︎ </button>
 
     <h1 class="title">Team 3-Force</h1>
     <h2 class="title">Emanuele, Jamal, Ove, & Sverre! </h2>
@@ -180,7 +180,7 @@
 
 
         function makeCard(name, nameId, listItems) {
-            document.getElementById('make-card').innerHTML += /*HTML*/ `
+            document.getElementById('make-card').innerHTML += `
             <div class="card">
                 <ul>
                     <h3>${name}</h3>
@@ -209,9 +209,15 @@
             }
         }
 
-        function toggleDarkMode() {
+        function toggleDarkMode(button) {
             var element = document.body;
             element.classList.toggle("dark-mode");
+
+            if (button.innerText.includes("☀︎")) {
+                button.innerText = "☾";
+            } else {
+                button.innerText = "☀︎"
+            }
         }
 
         function AddToList(tekst) {          
