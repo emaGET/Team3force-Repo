@@ -161,8 +161,12 @@
     <h3>Vi trenger alltid mer hjelp, bli med oss!<br></h3>
     <form id="teamAdd">
         <input type="text" id="memberName" placeholder="Navn">
+        <input type="number" id="memberAge" placeholder="Din alder">
         <button type="submit">Legge til!</button>
-    </form><br>
+    </form>
+    
+    <div id="ageMessage"></div><br>
+
     <div>Nåværende medlemmer:</div>
     <ul id="teamList">
         <li>Emanuele</li>
@@ -192,11 +196,25 @@
         }
 
         document.getElementById('teamAdd').addEventListener('submit', function(extraMember) {
+            
             extraMember.preventDefault();
-            let list = document.createElement('li');
-            list.textContent = document.getElementById('memberName').value;
-            document.getElementById('teamList').appendChild(list);
-            document.getElementById('memberName').value = '';
+
+            const name = document.getElementById('memberName').value;
+            const age = document.getElementById('memberAge').value;  
+            
+            const ageMessage = checkAge(age);
+
+            if (ageMessage === "" ) {
+                let list = document.createElement('li');
+                list.textContent = document.getElementById('memberName').value;
+                document.getElementById('teamList').appendChild(list);
+                document.getElementById('memberName').value = '';
+                document.getElementById('memberAge').value = '';
+
+            } else {
+                document.getElementById('ageMessage').innerHTML = ageMessage;
+            }
+
         });
 
         function changeColor() {
@@ -223,7 +241,6 @@
         function AddToList(tekst) {          
 
             const valgtListe = document.getElementById("selectId").value;
-
             document.getElementById(valgtListe).innerHTML += `
             <li>${tekst}</li>`;        
 
@@ -245,6 +262,15 @@
 
             updateView();
         }
+
+        function checkAge(age) {
+            if (age < 23) {
+                return "Du er for ung!";
+            } else {
+                return "";
+            }
+        }
+
 
         function updateView() {
             document.getElementById('randomResult').innerText = valgtMedlem;
