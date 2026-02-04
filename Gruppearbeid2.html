@@ -98,132 +98,30 @@
 
 <body>
 
-    <div id="app"></div>
-
-    <button onclick="toggleDarkMode(this)"> ☀︎ </button>
-
-    <h1 class="title">Team 3-Force</h1>
-    <h2 class="title">Emanuele, Jamal, Ove, & Sverre! </h2>
-    <div>GET Academy 2026</div>
-    <select name="" id="">
-        <option value=""> </option>
-        <option value="">Emanuele</option>
-        <option value="">Jamal</option>
-        <option value="">Ove</option>
-        <option value="">Sverre</option>
-    </select>
-
-    <hr>
-
- 
-
-    <button id="color" type="button" onclick="changeColor()">Bytt farge</button>
-
-    <select id="select">
-        <option value="">Velg farge</option>
-        <option value="black">Svart</option>
-        <option value="red">Rød</option>
-        <option value="yellow">Gul</option>
-        <option value="#11191f">Blå</option>
-        <option value="">Ingen</option>
-    </select>
-
-    <br> <hr>
-
-    <div class="random-box">
-        <h3>La oss legge til noe fint til:</h3>
-        <p id="randomResult" style="font-size: 40px; font-weight: bold;"></p>
-        <button onclick="findRandomMember()">Velg tilfeldig!</button>
-    </div>
-
-    <input type="text" id="tekstInput" placeholder="Skriv noe">
-    <button onclick="AddToList(
-    document.getElementById('tekstInput').value)">Legg til</button>
-
-    <select id="selectId">
-        <option value="ove">Ove</option>
-        <option value="JB">Jamal</option>
-        <option value="sverre">Sverre</option>
-        <option value="ema">Emanuele</option>
-
-    </select>
-
-      <div class="main-cards" id="make-card"></div>
-
-    <ul>
-        <li class="ema"><i>Emanuele</i>: bor i Tromsø men kommer fra Italia. Liker bordspill, videospill, distro-hopping og reise.</li>
-        <li class="ove">Ove: Liker å kode, se film, lage ting, snekker, litt gaming og spille gitar.</li>
-        <li class="JB">Jamal: liker å spille fotball, bor i Oslo</li>
-        <li class="sverre">Sverre: bor i Båstad, liker å game og se på serier.</li>
-    </ul>
-
-    <br> <hr>
-    <h3>Vi trenger alltid mer hjelp, bli med oss!<br></h3>
-    <form id="teamAdd">
-        <input type="text" id="memberName" placeholder="Navn">
-        <input type="number" id="memberAge" placeholder="Din alder">
-        <button type="submit">Legge til!</button>
-    </form>
-    
-    <div id="ageMessage"></div><br>
-
-    <div>Nåværende medlemmer:</div>
-    <ul id="teamList">
-        <li>Emanuele</li>
-        <li>Jamal</li>
-        <li>Ove</li>
-        <li>Sverre</li>
-    </ul>
-
+    <div id="app"></div>   
+   
     <script>
-
-        makeCard('Ove', 'ove', ['Se film', 'Snekre', 'Gaming', 'Spille gitar']);
-        makeCard('Sverre', 'sverre', ['Liker å game', 'Se på serier']);
-        makeCard('Jamal', 'JB', ['liker å spille fotball', 'Bor i oslo']);
-        makeCard('Emanuele', 'ema', ['Liker å game', 'bor i Tromsø men kommer fra Italia','Liker bordspill', 'videospill', 'distro-hopping', 'reise']);
 
 
         function makeCard(name, nameId, listItems) {
-            document.getElementById('make-card').innerHTML += `
-            <div class="card">
-                <ul>
-                    <h3>${name}</h3>
-                        ${listItems.map(item => `<li>${item}</li>`).join("")}
-                    <div id="${nameId}"></div>
-                </ul>
-            </div>
+            return ` 
+               <div class="card ${nameId}">
+                    <ul>
+                        <h3>${name}</h3>
+                            ${listItems.map(item => `<li>${item}</li>`).join("")}
+                        <div id="${nameId}"></div>
+                    </ul>
+                </div>
             `;
-        }
-
-        document.getElementById('teamAdd').addEventListener('submit', function(extraMember) {
-            
-            extraMember.preventDefault();
-
-            const name = document.getElementById('memberName').value;
-            const age = document.getElementById('memberAge').value;  
-            
-            const ageMessage = checkAge(age);
-
-            if (ageMessage === "" ) {
-                let list = document.createElement('li');
-                list.textContent = document.getElementById('memberName').value;
-                document.getElementById('teamList').appendChild(list);
-                document.getElementById('memberName').value = '';
-                document.getElementById('memberAge').value = '';
-
-            } else {
-                document.getElementById('ageMessage').innerHTML = ageMessage;
-            }
-
-        });
+        }      
 
         function changeColor() {
             const color = document.getElementById('select').value;
 
             if (color === "" || color === "Velg Farge") {
-            document.body.style.backgroundColor = "white";
+                document.body.style.backgroundColor = "white";
             } else {
-            document.body.style.backgroundColor = color;
+                document.body.style.backgroundColor = color;
             }
         }
 
@@ -238,16 +136,16 @@
             }
         }
 
-        function AddToList(tekst) {          
+        function AddToList(tekst) {
 
             const valgtListe = document.getElementById("selectId").value;
             document.getElementById(valgtListe).innerHTML += `
-            <li>${tekst}</li>`;        
+            <li>${tekst}</li>`;
 
-            document.getElementById("tekstInput").value = ""; // tøm input
+            document.getElementById("tekstInput").value = ""; 
         }
 
-        function findRandomMember(){
+        function findRandomMember() {
             let randomNumber = Math.floor(Math.random() * 4);
 
             if (randomNumber === 0) {
@@ -275,6 +173,89 @@
         function updateView() {
             document.getElementById('randomResult').innerText = valgtMedlem;
         }
+
+        function makeCards() { 
+            return `
+                <div class="main-cards">
+                    ${makeCard('Ove', 'ove', ['Se film', 'Snekre', 'Gaming', 'Spille gitar'])}
+                    ${makeCard('Sverre', 'sverre', ['Bor i båstad', 'Liker å game', 'Se på serier'])}
+                    ${makeCard('Jamal', 'JB', ['liker å spille fotball', 'Bor i oslo'])}
+                    ${makeCard('Emanuele', 'ema', ['Liker å game', 'bor i Tromsø men kommer fra Italia', 'Liker bordspill', 'videospill', 'distro-hopping', 'reise'])}
+                </div>
+            `;
+        }
+
+        function updateScreen() {
+            document.getElementById('app').innerHTML = `
+                <button onclick="toggleDarkMode(this)"> ☀︎ </button>
+                <h1 class="title">Team 3-Force</h1>
+                <h2 class="title">Emanuele, Jamal, Ove, & Sverre! </h2>
+                <div>GET Academy 2026</div>
+                <input type="text" id="tekstInput" placeholder="Skriv noe">
+                <button onclick="AddToList(
+                document.getElementById('tekstInput').value)">Legg til</button>
+
+                <select id="selectId">
+                    <option value="ove">Ove</option>
+                    <option value="JB">Jamal</option>
+                    <option value="sverre">Sverre</option>
+                    <option value="ema">Emanuele</option>
+
+                </select>
+               ${makeCards()}
+                <div class="random-box">
+                    <h3>La oss legge til noe fint til:</h3>
+                    <p id="randomResult" style="font-size: 40px; font-weight: bold;"></p>
+                    <button onclick="findRandomMember()">Velg tilfeldig!</button>
+                </div>
+
+
+                <br>
+                <hr>
+                <h3>Vi trenger alltid mer hjelp, bli med oss!<br></h3>
+                <form id="teamAdd">
+                    <input type="text" id="memberName" placeholder="Navn">
+                    <input type="number" id="memberAge" placeholder="Din alder">
+                    <button type="submit">Legge til!</button>
+                </form>
+
+                <div id="ageMessage"></div><br>
+
+                <div>Nåværende medlemmer:</div>
+                <ul id="teamList">
+                    <li>Emanuele</li>
+                    <li>Jamal</li>
+                    <li>Ove</li>
+                    <li>Sverre</li>
+                </ul>
+            `;
+
+                document.getElementById('teamAdd').addEventListener('submit', function (extraMember) {
+
+                extraMember.preventDefault();
+
+                const name = document.getElementById('memberName').value;
+                const age = document.getElementById('memberAge').value;
+
+                const ageMessage = checkAge(age);
+
+                if (ageMessage === "") {
+                    let list = document.createElement('li');
+                    list.textContent = document.getElementById('memberName').value;
+                    document.getElementById('teamList').appendChild(list);
+                    document.getElementById('memberName').value = '';
+                    document.getElementById('memberAge').value = '';
+
+                } else {
+                    document.getElementById('ageMessage').innerHTML = ageMessage;
+                }
+
+            });
+        }
+
+          
+
+        updateScreen();
 
     </script>
 
