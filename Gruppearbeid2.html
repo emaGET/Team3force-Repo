@@ -98,10 +98,26 @@
 
 <body>
 
-    <div id="app"></div>   
-   
-    <script>
+    <div id="app"></div>
 
+    <script>
+        let members = ["Emanuele", "Jamal", "Ove", "Sverre"];
+
+        let memberData = {
+            ove: ['Se film', 'Snekre', 'Gaming', 'Spille gitar'],
+            sverre: ['Bor i båstad', 'Liker å game', 'Se på serier'],
+            JB: ['liker å spille fotball', 'Bor i oslo'],
+            ema: ['Liker å game', 'bor i Tromsø men kommer fra Italia', 'Liker bordspill']
+        };
+
+        function getTitleText() {
+            if (members.length === 1) return members[0];
+            return members.slice(0, -1).join(", ") + " & " + members.at(-1) + "!";
+        }
+
+        function updateTitle() {
+            document.getElementById("title").textContent = getTitleText();
+        }
 
         function makeCard(name, nameId, listItems) {
             return ` 
@@ -113,9 +129,9 @@
                     </ul>
                 </div>
             `;
-        }      
+        }
 
-      
+
 
         function toggleDarkMode(button) {
             var element = document.body;
@@ -134,7 +150,7 @@
             document.getElementById(valgtListe).innerHTML += `
             <li>${tekst}</li>`;
 
-            document.getElementById("tekstInput").value = ""; 
+            document.getElementById("tekstInput").value = "";
         }
 
         function findRandomMember() {
@@ -166,13 +182,16 @@
             document.getElementById('randomResult').innerText = valgtMedlem;
         }
 
-        function makeCards() { 
+        function makeCards() {
             return `
-                <div class="main-cards">
-                    ${makeCard('Ove', 'ove', ['Se film', 'Snekre', 'Gaming', 'Spille gitar'])}
-                    ${makeCard('Sverre', 'sverre', ['Bor i båstad', 'Liker å game', 'Se på serier'])}
-                    ${makeCard('Jamal', 'JB', ['liker å spille fotball', 'Bor i oslo'])}
-                    ${makeCard('Emanuele', 'ema', ['Liker å game', 'bor i Tromsø men kommer fra Italia', 'Liker bordspill', 'videospill', 'distro-hopping', 'reise'])}
+                <div class="main-cards" id="cards">
+                    ${Object.entries(memberData).map(([id, skills]) =>
+                makeCard(
+                    id === 'JB' ? 'Jamal' : id.charAt(0).toUpperCase() + id.slice(1),
+                    id,
+                    skills
+                )
+            ).join("")}
                 </div>
             `;
         }
@@ -181,7 +200,7 @@
             document.getElementById('app').innerHTML = `
                 <button onclick="toggleDarkMode(this)"> ☀︎ </button>
                 <h1 class="title">Team 3-Force</h1>
-                <h2 class="title">Emanuele, Jamal, Ove, & Sverre! </h2>
+                <h2 class="title" id="title">${getTitleText()}</h2>                
                 <div>GET Academy 2026</div>
                 <input type="text" id="tekstInput" placeholder="Skriv noe">
                 <button onclick="AddToList(
@@ -214,15 +233,10 @@
                 <div id="ageMessage"></div><br>
 
                 <div>Nåværende medlemmer:</div>
-                <ul id="teamList">
-                    <li>Emanuele</li>
-                    <li>Jamal</li>
-                    <li>Ove</li>
-                    <li>Sverre</li>
-                </ul>
+                ${makeMemberList()}
             `;
 
-                document.getElementById('teamAdd').addEventListener('submit', function (extraMember) {
+            document.getElementById('teamAdd').addEventListener('submit', function (extraMember) {
 
                 extraMember.preventDefault();
 
@@ -232,9 +246,14 @@
                 const ageMessage = checkAge(age);
 
                 if (ageMessage === "") {
-                    let list = document.createElement('li');
-                    list.textContent = document.getElementById('memberName').value;
-                    document.getElementById('teamList').appendChild(list);
+
+                    const id = name.toLowerCase().replace(/\s+/g, '-');
+
+                    members.push(name);
+
+                    memberData[id] = [];
+                    updateScreen();
+                    
                     document.getElementById('memberName').value = '';
                     document.getElementById('memberAge').value = '';
 
@@ -245,7 +264,15 @@
             });
         }
 
-          
+        function makeMemberList() {
+            return `
+                <ul id="teamList">
+                    ${members.map(member => `<li>${member}</li>`).join("")}
+                </ul>
+            `;
+        }
+
+
 
         updateScreen();
 
