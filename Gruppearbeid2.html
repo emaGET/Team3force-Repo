@@ -123,7 +123,7 @@
             return ` 
                <div class="card ${nameId}">
                     <ul>
-                        <h3>${name}</h3>
+                        <h3>${name} ${getFavouriteFood(name)}</h3>
                             ${listItems.map(item => `<li>${item}</li>`).join("")}
                         <div id="${nameId}"></div>
                     </ul>
@@ -143,6 +143,23 @@
                 button.innerText = "☀︎"
             }
         }
+
+        function getFavouriteFood(memberName) {
+            let html = "";
+    
+            if (memberName === "Jamal") {
+                html = `🌮`;
+            } else if (memberName === "Ove") {
+                html = `🍣`;
+            } else if (memberName === "Sverre") {
+                html = `🍝`;
+            } else if (memberName === "Ema") {
+                html = `🍕`;
+            }
+    
+            return html;
+        }
+
 
         function AddToList(tekst) {
 
