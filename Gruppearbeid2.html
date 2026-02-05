@@ -123,7 +123,9 @@
             return ` 
                <div class="card ${nameId}">
                     <ul>
-                        <h3>${name} ${getFavouriteFood(name)}</h3>
+                        <h3>${name}</h3>
+                        <small><i>Fav. mat:</i> ${getFavouriteFood(name)}</small><br>
+                        <small><i>Farge:</i> ${getFavouriteColour(name)}</small><br><br>
                             ${listItems.map(item => `<li>${item}</li>`).join("")}
                         <div id="${nameId}"></div>
                     </ul>
@@ -148,13 +150,29 @@
             let html = "";
     
             if (memberName === "Jamal") {
-                html = `🌮`;
+                html = `🌮 Tacos`;
             } else if (memberName === "Ove") {
-                html = `🍣`;
+                html = `🍣 Sushi`;
             } else if (memberName === "Sverre") {
-                html = `🍝`;
+                html = `🍝 Pasta`;
             } else if (memberName === "Ema") {
-                html = `🍕`;
+                html = `🍕 Pizza`;
+            }
+    
+            return html;
+        }
+
+        function getFavouriteColour(memberName) {
+            let html = "";
+    
+            if (memberName === "Jamal") {
+                html = `🔵`;
+            } else if (memberName === "Ove") {
+                html = `🟡`;
+            } else if (memberName === "Sverre") {
+                html = `🟣`;
+            } else if (memberName === "Ema") {
+                html = `🟢`;
             }
     
             return html;
