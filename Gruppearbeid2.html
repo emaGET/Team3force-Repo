@@ -124,6 +124,7 @@
                <div class="card ${nameId}">
                     <ul>
                         <h3>${name}</h3>
+                        <button onclick="changeColor()">Endre farge</button>
                         <small><i>Fav. mat:</i> ${getFavouriteFood(name)}</small><br>
                         <small><i>Farge:</i> ${getFavouriteColour(name)}</small><br><br>
                             ${listItems.map(item => `<li>${item}</li>`).join("")}
@@ -152,7 +153,7 @@
             if (memberName === "Jamal") {
                 html = `🌮 Tacos`;
             } else if (memberName === "Ove") {
-                html = `🍣 Sushi`;
+                html = `🍣 Pinnekjøtt`;
             } else if (memberName === "Sverre") {
                 html = `🍝 Pasta`;
             } else if (memberName === "Ema") {
