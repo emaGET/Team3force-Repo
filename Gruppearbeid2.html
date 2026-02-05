@@ -75,6 +75,20 @@
             border-radius: 12px;
         }
 
+        .nameHead {
+
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: 1fr auto;
+        }
+
+        .nameHead button {
+            padding: 6px 12px;            
+            font-size: 14px;
+            height:50px;
+            width: 110px;
+        }
+
         .ove::marker {
             color: black;
         }
@@ -123,8 +137,10 @@
             return ` 
                <div class="card ${nameId}">
                     <ul>
-                        <h3>${name}</h3>
-                        <button onclick="changeColor()">Endre farge</button>
+                        <div class="nameHead">
+                            <h3>${name}</h3>
+                            <button onclick="changeColor()">Endre farge</button>
+                        <div>
                         <small><i>Fav. mat:</i> ${getFavouriteFood(name)}</small><br>
                         <small><i>Farge:</i> ${getFavouriteColour(name)}</small><br><br>
                             ${listItems.map(item => `<li>${item}</li>`).join("")}
@@ -149,7 +165,7 @@
 
         function getFavouriteFood(memberName) {
             let html = "";
-    
+
             if (memberName === "Jamal") {
                 html = `🌮 Tacos`;
             } else if (memberName === "Ove") {
@@ -159,13 +175,13 @@
             } else if (memberName === "Ema") {
                 html = `🍕 Pizza`;
             }
-    
+
             return html;
         }
 
         function getFavouriteColour(memberName) {
             let html = "";
-    
+
             if (memberName === "Jamal") {
                 html = `🔵`;
             } else if (memberName === "Ove") {
@@ -175,7 +191,7 @@
             } else if (memberName === "Ema") {
                 html = `🟢`;
             }
-    
+
             return html;
         }
 
@@ -222,12 +238,12 @@
             return `
                 <div class="main-cards" id="cards">
                     ${Object.entries(memberData).map(([id, skills]) =>
-                        makeCard(
-                        id === 'JB' ? 'Jamal' : id.charAt(0).toUpperCase() + id.slice(1),
-                        id,
-                        skills
-                        )
-                    ).join("")}
+                makeCard(
+                    id === 'JB' ? 'Jamal' : id.charAt(0).toUpperCase() + id.slice(1),
+                    id,
+                    skills
+                )
+            ).join("")}
                 </div>
             `;
         }
@@ -289,7 +305,7 @@
 
                     memberData[id] = [];
                     updateScreen();
-                    
+
                     document.getElementById('memberName').value = '';
                     document.getElementById('memberAge').value = '';
 
