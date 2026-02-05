@@ -221,12 +221,12 @@
             return `
                 <div class="main-cards" id="cards">
                     ${Object.entries(memberData).map(([id, skills]) =>
-                makeCard(
-                    id === 'JB' ? 'Jamal' : id.charAt(0).toUpperCase() + id.slice(1),
-                    id,
-                    skills
-                )
-            ).join("")}
+                        makeCard(
+                        id === 'JB' ? 'Jamal' : id.charAt(0).toUpperCase() + id.slice(1),
+                        id,
+                        skills
+                        )
+                    ).join("")}
                 </div>
             `;
         }
