@@ -262,6 +262,8 @@
                 <form id="teamAdd">
                     <input type="text" id="memberName" placeholder="Navn">
                     <input type="number" id="memberAge" placeholder="Din alder">
+                    <input type="text" id="memberFood" placeholder="Favorittmat">
+                    <input type="text" id="memberColour" placeholder="Favorittfarge">
                     <button type="submit">Legge til!</button>
                 </form>
 
@@ -277,6 +279,8 @@
 
                 const name = document.getElementById('memberName').value;
                 const age = document.getElementById('memberAge').value;
+                const food = document.getElementById('memberFood').value;
+                const colour = document.getElementById('memberColour').value;
 
                 const ageMessage = checkAge(age);
 
@@ -291,6 +295,8 @@
                     
                     document.getElementById('memberName').value = '';
                     document.getElementById('memberAge').value = '';
+                    document.getElementById('memberFood').value = '';
+                    document.getElementById('memberColour').value = '';
 
                 } else {
                     document.getElementById('ageMessage').innerHTML = ageMessage;
