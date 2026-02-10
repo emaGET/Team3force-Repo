@@ -176,20 +176,10 @@
             valgtMedlem: "",
         };
 
-
-        let members = ["Emanuele", "Jamal", "Ove", "Sverre"];
-
-        let memberData = {
-            ove: ['Se film', 'Snekre', 'Gaming', 'Spille gitar'],
-            sverre: ['Bor i båstad', 'Liker å game', 'Se på serier'],
-            JB: ['liker å spille fotball', 'Bor i oslo'],
-            ema: ['Liker å game', 'bor i Tromsø men kommer fra Italia', 'Liker bordspill']
-        };
-
         function getTitleText() {
-            if (members.length === 1) return members[0];
-            return members.slice(0, -1).join(", ") + " & " + members.at(-1) + "!";
-        }
+            if (model.members.length === 1) return model.members[0];
+            return model.members.slice(0, -1).join(", ") + " & " + model.members.at(-1) + "!";
+        }   // AI-assistenten sa "man, legge til denne linjen", vet ikke hvorfor. jeg må sjekke senere.
 
         function updateTitle() {
             document.getElementById("title").textContent = getTitleText();
@@ -214,18 +204,20 @@
             `;
         }
 
-
-
-        function toggleDarkMode(button) {
-            var element = document.body;
-            element.classList.toggle("dark-mode");
-
-            if (button.innerText.includes("☀︎")) {
-                button.innerText = "☾";
-            } else {
-                button.innerText = "☀︎"
-            }
+        function toggleDarkModeState() {
+            model.isDarkMode = !model.isDarkMode;
         }
+
+        function handleToggleDarkMode() {
+            toggleDarkModeState();
+            updateScreen();
+        }
+
+        function createDarkModeButton() {
+            const icon = model.isDarkMode ? '☀︎' : '☾';
+            return `<button onclick="handleToggleDarkMode()">${icon}</button>`;
+        }
+
 
         function getFavouriteFood(memberName) {
             let html = "";
@@ -273,13 +265,13 @@
             let randomNumber = Math.floor(Math.random() * 4);
 
             if (randomNumber === 0) {
-                valgtMedlem = "Emanuele";
+                model.valgtMedlem = "Emanuele";
             } else if (randomNumber === 1) {
-                valgtMedlem = "Jamal";
+                model.valgtMedlem = "Jamal";
             } else if (randomNumber === 2) {
-                valgtMedlem = "Ove";
+                model.valgtMedlem = "Ove";
             } else if (randomNumber === 3) {
-                valgtMedlem = "Sverre";
+                model.valgtMedlem = "Sverre";
             }
 
             updateView();
@@ -295,13 +287,13 @@
 
 
         function updateView() {
-            document.getElementById('randomResult').innerText = valgtMedlem;
+            document.getElementById('randomResult').innerText = model.valgtMedlem;
         }
 
         function makeCards() {
             return `
                 <div class="main-cards" id="cards">
-                    ${Object.entries(memberData).map(([id, skills]) =>
+                    ${Object.entries(model.memberData).map(([id, skills]) =>
                 makeCard(
                     id === 'JB' ? 'Jamal' : id.charAt(0).toUpperCase() + id.slice(1),
                     id,
@@ -313,8 +305,10 @@
         }
 
         function updateScreen() {
+            document.body.classList.toggle('dark-mode', model.isDarkMode);
+
             document.getElementById('app').innerHTML = `
-                <button onclick="toggleDarkMode(this)"> ☀︎ </button>
+                ${createDarkModeButton()}
                 <h1 class="title">Team 3-Force</h1>
                 <h2 class="title" id="title">${getTitleText()}</h2>                
                 <div>GET Academy 2026</div>
@@ -371,10 +365,10 @@
 
                     const id = name.toLowerCase().replace(/\s+/g, '-');
 
-                    members.push(name);
+                    model.members.push(name);
                     FirecellAnimation();
 
-                    memberData[id] = [ ` Fav. mat ${document.getElementById('memberFood').value}`, ` Fav. farge ${document.getElementById('memberColor').value}`, info ];
+                    model.memberData[id] = [ ` Fav. mat ${document.getElementById('memberFood').value}`, ` Fav. farge ${document.getElementById('memberColor').value}`, info ];
                     updateScreen();
 
                     document.getElementById('memberName').value = '';
@@ -392,7 +386,7 @@
         function makeMemberList() {
             return `
                 <ul id="teamList">
-                    ${members.map(member => `<li>${member}</li>`).join("")}
+                    ${model.members.map(member => `<li>${member}</li>`).join("")}
                 </ul>
             `;
         }
