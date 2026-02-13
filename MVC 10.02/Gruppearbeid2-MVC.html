@@ -179,7 +179,7 @@
         function getTitleText() {
             if (model.members.length === 1) return model.members[0];
             return model.members.slice(0, -1).join(", ") + " & " + model.members.at(-1) + "!";
-        }   // AI-assistenten sa "man, legge til denne linjen", vet ikke hvorfor. jeg må sjekke senere.
+        }  
 
         function updateTitle() {
             document.getElementById("title").textContent = getTitleText();
