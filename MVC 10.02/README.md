@@ -28,3 +28,7 @@ HVORFOR ER DET BEDRE?
 Variabel model.isDarkMode alltid forteller hvis er dark mode på eller av.
 Og hver funksjon gjør kun sin greie.
 Når noe krasjer, det er enkelt å finne ut hvilken funksjon fungerer ikke.
+
+2. updateView()
+
+FØR:

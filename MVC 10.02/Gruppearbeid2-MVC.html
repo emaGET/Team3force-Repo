@@ -274,7 +274,7 @@
                 model.valgtMedlem = "Sverre";
             }
 
-            updateView();
+            updateScreen();
         }
 
         function checkAge(age) {
@@ -283,11 +283,6 @@
             } else {
                 return "";
             }
-        }
-
-
-        function updateView() {
-            document.getElementById('randomResult').innerText = model.valgtMedlem;
         }
 
         function makeCards() {
@@ -326,7 +321,7 @@
                ${makeCards()}
                 <div class="random-box">
                     <h3>La oss legge til noe fint til:</h3>
-                    <p id="randomResult" style="font-size: 40px; font-weight: bold;"></p>
+                    <p id="randomResult" style="font-size: 40px; font-weight: bold;">${model.valgtMedlem}</p>
                     <button onclick="findRandomMember()">Velg tilfeldig!</button>
                 </div>
 
