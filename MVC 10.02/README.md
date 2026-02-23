@@ -32,3 +32,14 @@ Når noe krasjer, det er enkelt å finne ut hvilken funksjon fungerer ikke.
 2. updateView()
 
 FØR:
+
+Funksjonen var ikke det vi trengte. Vi trengte at den skulle oppdatere hele siden, i stedet for bare å endre teksten i ett enkelt element.
+
+PROBLEM:
+Vi hadde allerede updateScreen() som bygger hele siden på nytt, og updateView() lot ikke updateScreen() håndtere all visning/rendering (den manipulerte DOM direkte).
+
+LØSNING:
+Slettet hele funksjonen, og lot updateScreen() vise model.valgtMedlem direkte i HTML-en. Så endret jeg selvfølgelig findRandomMember() til å kalle updateScreen() i stedet for updateView().
+
+HVORFOR ER DET BEDRE:
+Nå er det bare én funksjon (updateScreen()) som håndterer all visning/rendering. Modellen lagrer data, og updateScreen() viser dem.
